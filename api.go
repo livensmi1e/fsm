@@ -17,15 +17,21 @@ type Machine interface {
 	Err() error
 }
 
-type StateConfig struct {
-	State       State
-	Transitions []struct {
-		Event Event
-		Dst   State
-	}
+type Transition struct {
+	Event Event
+	Dst   State
 }
 
-func NewMachine(name string, initial State, states []StateConfig) Machine {
+type Transitions []Transition
+
+type StateConfig struct {
+	State       State
+	Transitions Transitions
+}
+
+type States []StateConfig
+
+func NewMachine(name string, initial State, states States) Machine {
 	mStates := make(map[State]state)
 	for _, s := range states {
 		state := state{
