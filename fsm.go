@@ -42,6 +42,10 @@ func (m *machine) Err() error {
 	return m.err
 }
 
+func (m *machine) GetMachine() *machine {
+	return m
+}
+
 func (m *machine) getNextState(event Event) State {
 	if m.err != nil {
 		return nil

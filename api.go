@@ -15,6 +15,7 @@ type Machine interface {
 	Transition(event Event) error
 	HasTransition(event Event) bool
 	Err() error
+	GetMachine() *machine
 }
 
 type Transition struct {

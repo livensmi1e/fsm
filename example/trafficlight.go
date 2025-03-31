@@ -9,23 +9,28 @@ import (
 
 type StateGreen struct{}
 
-func (s *StateGreen) OnEnter() { fmt.Println("🚦 Green: Go!") }
-func (s *StateGreen) OnExit()  { fmt.Println("🚦 Green: Time's up!") }
-func (s *StateGreen) Execute() { fmt.Println("🚦 Green: Running...") }
+func (s *StateGreen) OnEnter()       { fmt.Println("🚦 Green: Go!") }
+func (s *StateGreen) OnExit()        { fmt.Println("🚦 Green: Time's up!") }
+func (s *StateGreen) Execute()       { fmt.Println("🚦 Green: Running...") }
+func (s *StateGreen) String() string { return "Green" }
 
 type StateAmber struct{}
 
-func (s *StateAmber) OnEnter() { fmt.Println("🟡 Amber: Caution!") }
-func (s *StateAmber) OnExit()  { fmt.Println("🟡 Amber: Switching...") }
-func (s *StateAmber) Execute() { fmt.Println("🟡 Amber: Running...") }
+func (s *StateAmber) OnEnter()       { fmt.Println("🟡 Amber: Caution!") }
+func (s *StateAmber) OnExit()        { fmt.Println("🟡 Amber: Switching...") }
+func (s *StateAmber) Execute()       { fmt.Println("🟡 Amber: Running...") }
+func (s *StateAmber) String() string { return "Amber" }
 
 type StateRed struct{}
 
-func (s *StateRed) OnEnter() { fmt.Println("🔴 Red: Stop!") }
-func (s *StateRed) OnExit()  { fmt.Println("🔴 Red: Switching...") }
-func (s *StateRed) Execute() { fmt.Println("🔴 Red: Running...") }
+func (s *StateRed) OnEnter()       { fmt.Println("🔴 Red: Stop!") }
+func (s *StateRed) OnExit()        { fmt.Println("🔴 Red: Switching...") }
+func (s *StateRed) Execute()       { fmt.Println("🔴 Red: Running...") }
+func (s *StateRed) String() string { return "Red" }
 
 type TimerExpire struct{}
+
+func (t TimerExpire) String() string { return "TimerExpire" }
 
 func main() {
 	green := &StateGreen{}
@@ -33,8 +38,9 @@ func main() {
 	amber := &StateAmber{}
 
 	timeexpire := TimerExpire{}
+	// Alternative is timeexpire := &TimeExpire{}
 
-	fsm, err := fsm.NewMachineBuilder("traffic light").
+	machine, err := fsm.NewMachineBuilder("traffic light").
 		SetInitial(green).
 		AddState(green).
 		AddState(red).
@@ -48,10 +54,12 @@ func main() {
 		return
 	}
 	for i := 0; i < 6; i++ {
-		fsm.CurrentState().Execute()
+		machine.CurrentState().Execute()
 		time.Sleep(1 * time.Second)
-		if err := fsm.Transition(timeexpire); err != nil {
+		if err := machine.Transition(timeexpire); err != nil {
 			fmt.Println("Transition Error:", err)
 		}
 	}
+	mermaid := fsm.DrawMermaid(machine.GetMachine())
+	fmt.Println(mermaid)
 }

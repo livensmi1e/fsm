@@ -1,6 +1,6 @@
 ## FSM
 
-A project to learn FSM Go implementation, from:
+Project to learn FSM Go implementation, from:
 
 -   [Finite State Machines in Go](https://sebinbabu.com/posts/finite-state-machines-in-go/)
 -   [GFSM - A Simple and Fast FSM for Go](https://sysdev.me/gfsm-a-simple-and-fast-fsm-for-go/)
