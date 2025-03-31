@@ -7,8 +7,8 @@ Project to learn FSM Go implementation, from:
 
 This project also explores:
 
--   Error handling in Go ([Errors are values](https://go.dev/blog/errors-are-values)).
+-   One way to handle error ([Errors are values](https://go.dev/blog/errors-are-values), [Golang Error Handling lesson by Rob Pike](https://jxck.hatenablog.com/entry/golang-error-handling-lesson-by-rob-pike)).
 -   Builder pattern for FSM construction.
 -   Support **states, transition rules, and callback functions**.
--   Two way to construct fsm using declarative struct based approach and builder pattern.
+-   Two way to construct fsm using declarative struct based and builder pattern.
 -   Visualize in Mermaid
