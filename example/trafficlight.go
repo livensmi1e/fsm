@@ -38,7 +38,7 @@ func main() {
 	amber := &StateAmber{}
 
 	timeexpire := TimerExpire{}
-	// Alternative is timeexpire := &TimeExpire{}
+	// Alternative is timeexpire := &TimeExpire{}, if used, must change receiver to pointer type func (t *TimerExpire)
 
 	machine, err := fsm.NewMachineBuilder("traffic light").
 		SetInitial(green).
