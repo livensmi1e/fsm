@@ -10,4 +10,5 @@ This project also explores:
 -   Error handling in Go ([Errors are values](https://go.dev/blog/errors-are-values)).
 -   Builder pattern for FSM construction.
 -   Support **states, transition rules, and callback functions**.
--   Two way to construct fsm using declarative approach and builder pattern.
+-   Two way to construct fsm using declarative struct based approach and builder pattern.
+-   Visualize in Mermaid

@@ -9,9 +9,9 @@ import (
 
 type StateGreen struct{}
 
-func (s *StateGreen) OnEnter()       { fmt.Println("🚦 Green: Go!") }
-func (s *StateGreen) OnExit()        { fmt.Println("🚦 Green: Time's up!") }
-func (s *StateGreen) Execute()       { fmt.Println("🚦 Green: Running...") }
+func (s *StateGreen) OnEnter()       { fmt.Println("🟢 Green: Go!") }
+func (s *StateGreen) OnExit()        { fmt.Println("🟢 Green: Time's up!") }
+func (s *StateGreen) Execute()       { fmt.Println("🟢 Green: Running...") }
 func (s *StateGreen) String() string { return "Green" }
 
 type StateAmber struct{}
@@ -40,7 +40,7 @@ func main() {
 	timeexpire := TimerExpire{}
 	// Alternative is timeexpire := &TimeExpire{}, if used, must change receiver to pointer type func (t *TimerExpire)
 
-	machine, err := fsm.NewMachineBuilder("traffic light").
+	machine, err := fsm.NewMachineBuilder("Traffic Light").
 		SetInitial(green).
 		AddState(green).
 		AddState(red).
