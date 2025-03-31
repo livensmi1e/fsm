@@ -28,7 +28,6 @@ func (m *machine) Transition(event Event) error {
 	m.current.OnExit()
 	m.current = next
 	m.current.OnEnter()
-	m.current.Execute()
 	return nil
 }
 
